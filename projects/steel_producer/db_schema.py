@@ -366,7 +366,7 @@ class TestResult(BaseMongoDbDocumentSchema):
     
     # Test conditions
     test_temperature_c: Optional[float] = Field(None)
-    test_environment: Dict[str, str] = Field(default={}, description="Environmental conditions")
+    test_environment: Dict[str, Any] = Field(default={}, description="Environmental conditions")
     
     # Results
     test_results: Dict[str, float] = Field(..., description="Measured values")
