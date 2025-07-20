@@ -8,6 +8,12 @@ Example inputs could include:
 - Anonymized info about a a real database
 - SQL database schema
 
+## Run Mimiod
+
+There's not a single way to run it because it's basically just a prompt workflow with some shared Python utilities in the `mimiod` package. 
+
+I've been using Claude Code to run it, but other agentic code editor tools like OpenAI Codex, Windsurf, or GitHub CoPilot may work as well.
+
 ## Flow 
 
 The Mimiod workflow should follow this process.
@@ -41,4 +47,43 @@ projects/my_project/
 
 More information on each step can be found in the [`steps`](steps) directory.
 
-More information on each step can be found in the [`steps`](steps) directory.
+## Development
+
+### Environment Setup
+```bash
+# Install dependencies
+uv sync
+
+# Install with dev dependencies  
+uv sync --extra dev
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your MongoDB connection string
+```
+
+### Testing
+```bash
+# Run all tests
+uv run pytest
+
+# Run specific test file
+uv run pytest tests/test_schema_types.py
+
+# Run with verbose output
+uv run pytest tests/ -v
+```
+
+### Running Generated Databases
+```bash
+# Execute a generated database project
+cd projects/project_name
+uv run python main.py
+
+# With custom MongoDB URI
+MONGODB_URI="mongodb://custom:27017" uv run python main.py
+
+# Example: Run the digital lending platform
+cd projects/digital_bank
+uv run python main.py
+```
