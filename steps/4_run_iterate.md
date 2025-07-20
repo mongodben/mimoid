@@ -57,6 +57,28 @@ After seeding, perform comprehensive validation:
    - Check index performance with sample queries
    - Verify unique constraints are enforced
 
+**✨ Use Built-in Validation Method**
+The `DatabaseSeeder` base class provides a comprehensive `validate_schema_and_indexes()` method that automatically performs steps 2 and 3 above. Use this method in your validation process:
+
+```python
+# In your main.py or validation script
+pydantic_models = {
+    "collection_name": PydanticModelClass,
+    # ... map all your collections to their Pydantic models
+}
+
+validation_results = seeder.validate_schema_and_indexes(
+    sample_size=10,  # Number of documents to sample per collection
+    pydantic_models=pydantic_models
+)
+
+if not validation_results['validation_summary']['overall_success']:
+    print("❌ Validation failed!")
+    # Handle validation errors
+else:
+    print("✅ All validation checks passed!")
+```
+
 4. **Data Quality Assessment**
    - Check for realistic data distribution
    - Verify data variety and uniqueness
@@ -153,35 +175,65 @@ Handle common error scenarios gracefully:
 ## Example Validation Script
 
 ```python
-def validate_database_health(db_schema, connection_string):
+def validate_database_health(seeder, pydantic_models):
     """
-    Comprehensive database health check after seeding
+    Comprehensive database health check after seeding using built-in validation
     """
-    client = MongoClient(connection_string)
-    db = client[db_schema.database_name]
     
-    results = {
-        'collections_created': [],
-        'document_counts': {},
-        'schema_validation': {},
-        'index_validation': {},
-        'referential_integrity': {}
+    # Use the built-in comprehensive validation method
+    validation_results = seeder.validate_schema_and_indexes(
+        sample_size=10,
+        pydantic_models=pydantic_models
+    )
+    
+    # Extract key metrics for reporting
+    summary = validation_results['validation_summary']
+    
+    print("🔍 Database Health Check Results:")
+    print(f"  • Overall Success: {'✅' if summary['overall_success'] else '❌'}")
+    print(f"  • Collections: {summary['total_collections']}")
+    print(f"  • Schema Validation: {summary['schema_validation_passed']}/{summary['total_collections']} passed")
+    print(f"  • Index Validation: {summary['index_validation_passed']}/{summary['total_collections']} passed")
+    print(f"  • Documents Sampled: {summary['total_documents_sampled']}")
+    print(f"  • Validation Errors: {summary['total_validation_errors']}")
+    
+    # Show detailed results for collections with issues
+    for collection_name, result in validation_results['collection_results'].items():
+        if not result['schema_validation']['passed'] or not result['index_validation']['passed']:
+            print(f"\n❌ Issues found in '{collection_name}':")
+            
+            if not result['schema_validation']['passed']:
+                print(f"  Schema Errors ({len(result['schema_validation']['errors'])}):")
+                for error in result['schema_validation']['errors'][:3]:  # Show first 3
+                    print(f"    • {error}")
+            
+            if not result['index_validation']['passed']:
+                print(f"  Index Errors ({len(result['index_validation']['errors'])}):")
+                for error in result['index_validation']['errors']:
+                    print(f"    • {error}")
+    
+    return validation_results
+
+# Usage in main.py
+if __name__ == "__main__":
+    # Import your models
+    from db_schema import Facility, Product, User  # etc.
+    
+    pydantic_models = {
+        "facilities": Facility,
+        "products": Product, 
+        "users": User,
+        # ... map all collections
     }
     
-    # Check each collection
-    for collection_name, schema in db_schema.collections.items():
-        collection = db[collection_name]
-        
-        # Check existence and count
-        if collection_name in db.list_collection_names():
-            results['collections_created'].append(collection_name)
-            results['document_counts'][collection_name] = collection.count_documents({})
-        
-        # Validate sample documents
-        sample_docs = list(collection.find().limit(10))
-        # ... validation logic ...
+    # Run comprehensive validation
+    results = validate_database_health(seeder, pydantic_models)
     
-    return results
+    if results['validation_summary']['overall_success']:
+        print("✅ Database validation passed!")
+    else:
+        print("❌ Database validation failed!")
+        exit(1)
 ```
 
 This comprehensive approach ensures reliable database generation with proper validation and iteration capabilities.

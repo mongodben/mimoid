@@ -51,6 +51,7 @@ The following libraries are available for use in the seed script:
    - Referential Integrity: All foreign key references are valid
    - Index Creation: All indexes are created successfully
    - Data Distribution: Reasonable distribution of data across fields
+   - **Use Built-in Validation**: Utilize the `validate_schema_and_indexes()` method for comprehensive validation
 
 ## `DatabaseSeeder` Class
 
@@ -90,6 +91,22 @@ class DatabaseSeeder(ABC):
     @abstractmethod
     def validate_seed_data(self):
         """Validate the seeded data meets quality standards"""
+        pass
+    
+    # Available method for comprehensive validation
+    def validate_schema_and_indexes(self, sample_size: int = 10, pydantic_models: Optional[Dict[str, Type[BaseModel]]] = None):
+        """
+        Validate that collections follow the defined schema and have proper indexes.
+        
+        Args:
+            sample_size: Number of documents to sample per collection for validation
+            pydantic_models: Dictionary mapping collection names to Pydantic model classes
+                           Example: {"facilities": Facility, "products": Product}
+        
+        Returns:
+            Dict[str, Any]: Validation results with detailed information about successes/failures
+        """
+        # Implementation provided by base class
         pass
 ```
 
@@ -190,15 +207,20 @@ class ConcreteDatabaseSeeder(BaseDatabaseSeeder):
         
         if articles_with_invalid_authors > 0:
             raise ValueError(f"Found {articles_with_invalid_authors} articles with invalid author references")
-            
-        # Check schema compliance
-        for collection_name, collection_schema in self.database_schema.collections.items():
-            # Validate a sample of documents against the Pydantic model
-            sample_docs = list(self.db[collection_name].find().limit(10))
-            for doc in sample_docs:
-                # This would validate against the Pydantic model
-                # model_class.parse_obj(doc)
-                pass
+        
+        # Use the built-in comprehensive validation method
+        pydantic_models = {
+            'users': User,  # Import your Pydantic models
+            'articles': Article
+        }
+        
+        validation_results = self.validate_schema_and_indexes(
+            sample_size=10,
+            pydantic_models=pydantic_models
+        )
+        
+        if not validation_results['validation_summary']['overall_success']:
+            raise ValueError("Schema and index validation failed")
                 
         print("Data validation passed!")
 

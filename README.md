@@ -14,6 +14,13 @@ There's not a single way to run it because it's basically just a prompt workflow
 
 I've been using Claude Code to run it, but other agentic code editor tools like OpenAI Codex, Windsurf, or GitHub CoPilot may work as well.
 
+I give Claude Code a prompt like the following:
+
+```
+Take this input file <some_input_file.md> and use the Mimoid workflow to create the DB. Out to <some_output_dir>.
+
+<Can add additional instructions here, if relevant>
+```
 ## Flow 
 
 The Mimiod workflow should follow this process.
@@ -87,3 +94,15 @@ MONGODB_URI="mongodb://custom:27017" uv run python main.py
 cd projects/digital_bank
 uv run python main.py
 ```
+
+## Future Work
+
+- [ ] Support Atlas features, like Search/Vector Search.
+  - This can probably be accomplished with a bit of prompt engineering in the `steps`.
+- [ ] Proactively support using LLM to generate bits of the synthetic data.
+  - This will require some better prompting and maybe creating some Python utilities in `mimiod`. 
+  - This'd be useful for generating richer data for things like reviews, comments, etc.
+- [ ] Additional reference documentation for MongoDB database design.
+  - Add some optional reference documentation that the model can refer to when architecting the DB. Refer to relevant bits of the reference documentation in the `steps` prompt files. 
+- [ ] Evaluation of generated results for each step.
+  - I have no idea how to evaluate this beast. \*waves hands\* LLM-as-a-judge...
