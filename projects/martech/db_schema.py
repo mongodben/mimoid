@@ -5,8 +5,8 @@ from typing import Optional, List, Dict, Any, Union
 from pydantic import Field, EmailStr, validator
 from enum import Enum
 
-# Import base types from mimiod package
-from mimiod import (
+# Import base types from mimoid package
+from mimoid import (
     IndexDirection,
     IndexDefinition,
     BaseCollectionSchema,

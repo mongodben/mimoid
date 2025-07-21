@@ -4,7 +4,7 @@ A comprehensive MongoDB database designed for digital lending platforms speciali
 
 ## Overview
 
-This database was generated using the Mimiod workflow from a digital banking case study. It provides a complete foundation for microfinance platforms that need to:
+This database was generated using the Mimoid workflow from a digital banking case study. It provides a complete foundation for microfinance platforms that need to:
 
 - **Process alternative credit data** from social media, device behavior, and network analysis
 - **Handle rapid loan approvals** with AI-powered decision making (24-hour turnaround)
@@ -60,7 +60,7 @@ The database contains realistic sample data including:
 
 - MongoDB 4.4+ running locally or accessible via connection string
 - Python 3.11+
-- Required dependencies (installed via the parent mimiod project)
+- Required dependencies (installed via the parent mimoid project)
 
 ### Running the Database Setup
 
@@ -283,4 +283,4 @@ compliance_record = {
 
 ---
 
-*Generated using Mimiod - MongoDB database generation from natural language*
+*Generated using Mimoid - MongoDB database generation from natural language*

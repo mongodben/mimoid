@@ -3,7 +3,7 @@
 import pytest
 from bson import ObjectId
 
-from mimiod import (
+from mimoid import (
     IndexDirection,
     IndexDefinition,
     BaseCollectionSchema,

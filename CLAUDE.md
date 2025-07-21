@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Mimiod is a MongoDB database generation tool that uses agentic LLM workflows to create well-designed database schemas and sample data from natural language inputs. The system takes business descriptions, use cases, or existing database information and generates complete MongoDB databases with realistic sample data.
+Mimoid is a MongoDB database generation tool that uses agentic LLM workflows to create well-designed database schemas and sample data from natural language inputs. The system takes business descriptions, use cases, or existing database information and generates complete MongoDB databases with realistic sample data.
 
 ## Core Architecture
 
-### Base Framework (`mimiod/` package)
+### Base Framework (`mimoid/` package)
 - **schema_types.py**: Core Pydantic models and MongoDB-specific types including `BaseMongoDbSchema`, `IndexDefinition`, `PyObjectId`, and document base classes
 - **seeder_base.py**: Abstract `DatabaseSeeder` class that all concrete seeders must implement
 - **__init__.py**: Exposes all base types for use in generated projects
@@ -28,7 +28,7 @@ The system follows a 5-step workflow documented in individual markdown files:
    - Run seed an iterate.
    - More info in [steps/4_run_iterate.md](./steps/4_run_iterate.md)
 5. **Document Database**: Generate comprehensive documentation and usage examples
-The Mimiod workflow should follow this process.
+The Mimoid workflow should follow this process.
    - Document the database (create `README.md`)
    - More info in [steps/5_document.md](./steps/5_document.md)
 
@@ -38,7 +38,7 @@ Before you being create a new directory for the project within the `projects` di
 ### Generated Projects (`projects/` directory)
 Each generated database lives in its own subdirectory with standardized files:
 - `tech_design.md` - Technical analysis and design decisions
-- `db_schema.py` - Pydantic models and MongoDB schema using mimiod base types
+- `db_schema.py` - Pydantic models and MongoDB schema using mimoid base types
 - `seed_db.py` - Concrete DatabaseSeeder implementation with realistic data generation
 - `main.py` - Execution script with pre-checks, seeding, validation, and reporting
 - `README.md` - Complete database documentation with usage examples
@@ -103,9 +103,9 @@ uv run python main.py
 1. **Input Preparation**: Place business description, use case, or existing schema info in a markdown file
 2. **Project Directory**: Create `projects/new_project_name/` directory
 3. **Follow 5-Step Process**: Implement each step following the detailed instructions in `steps/` directory
-4. **Import Requirements**: All generated schema files must import from mimiod package:
+4. **Import Requirements**: All generated schema files must import from mimoid package:
    ```python
-   from mimiod import (
+   from mimoid import (
        BaseMongoDbSchema, BaseCollectionSchema, BaseMongoDbDocumentSchema,
        IndexDefinition, IndexDirection, PyObjectId, DatabaseSeeder
    )

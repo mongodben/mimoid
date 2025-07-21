@@ -1,5 +1,5 @@
 [project]
-name = "mimiod"
+name = "mimoid"
 version = "0.1.0"
 description = "MongoDB database generation from natural language using agentic LLM workflow"
 readme = "README.md"

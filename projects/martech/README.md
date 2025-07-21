@@ -4,7 +4,7 @@ A comprehensive MongoDB database designed for MarTech customer data platforms, s
 
 ## Overview
 
-This database was generated using the Mimiod workflow from a MarTech company case study. It provides a flexible, scalable foundation for customer data platforms that need to handle:
+This database was generated using the Mimoid workflow from a MarTech company case study. It provides a flexible, scalable foundation for customer data platforms that need to handle:
 
 - **Dynamic customer profiles** with custom fields and attributes
 - **Multi-channel event tracking** across web, mobile, email, and social platforms  
@@ -61,7 +61,7 @@ The database contains realistic sample data including:
 
 - MongoDB 4.4+ running locally or accessible via connection string
 - Python 3.11+
-- Required dependencies (installed via the parent mimiod project)
+- Required dependencies (installed via the parent mimoid project)
 
 ### Running the Database Setup
 
@@ -82,7 +82,7 @@ The setup process will:
 
 ### Connection Details
 
-- **Database Name**: `datatech_platform`
+- **Database Name**: `martech`
 - **Default Connection**: `mongodb://localhost:27017`
 - **Override via Environment**: Set `MONGODB_URI` environment variable
 
@@ -203,11 +203,11 @@ Sample customers include varied profiles for testing:
 
 ## Support
 
-For questions about this database or the Mimiod workflow:
+For questions about this database or the Mimoid workflow:
 - Review the technical design document (`tech_design.md`)
 - Check the schema definitions (`db_schema.py`)
 - Examine the seeding logic (`seed_db.py`)
 
 ---
 
-*Generated using Mimiod - MongoDB database generation from natural language*
+*Generated using Mimoid - MongoDB database generation from natural language*

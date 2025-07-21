@@ -1,6 +1,6 @@
-# Mimiod
+# Mimoid
 
-Mimiod is a project for creating MongoDB databases from natural language. It is designed to take a flexible natural language input and create a well-designed MongoDB database schema and sample data that is representative of the input.
+Mimoid is a project for creating MongoDB databases from natural language. It is designed to take a flexible natural language input and create a well-designed MongoDB database schema and sample data that is representative of the input.
 
 Example inputs could include:
 - Blog post about a business use case
@@ -8,9 +8,9 @@ Example inputs could include:
 - Anonymized info about a a real database
 - SQL database schema
 
-## Run Mimiod
+## Run Mimoid
 
-There's not a single way to run it because it's basically just a prompt workflow with some shared Python utilities in the `mimiod` package. 
+There's not a single way to run it because it's basically just a prompt workflow with some shared Python utilities in the `mimoid` package. 
 
 I've been using Claude Code to run it, but other agentic code editor tools like OpenAI Codex, Windsurf, or GitHub CoPilot may work as well.
 
@@ -23,7 +23,7 @@ Take this input file <some_input_file.md> and use the Mimoid workflow to create 
 ```
 ## Flow 
 
-The Mimiod workflow should follow this process.
+The Mimoid workflow should follow this process.
 
 Before you being create a new directory for the project within the `projects` directory of this repository. E.g. `projects/my_project/`
 
@@ -100,7 +100,7 @@ uv run python main.py
 - [ ] Support Atlas features, like Search/Vector Search.
   - This can probably be accomplished with a bit of prompt engineering in the `steps`.
 - [ ] Proactively support using LLM to generate bits of the synthetic data.
-  - This will require some better prompting and maybe creating some Python utilities in `mimiod`. 
+  - This will require some better prompting and maybe creating some Python utilities in `mimoid`. 
   - This'd be useful for generating richer data for things like reviews, comments, etc.
 - [ ] Additional reference documentation for MongoDB database design.
   - Add some optional reference documentation that the model can refer to when architecting the DB. Refer to relevant bits of the reference documentation in the `steps` prompt files. 
