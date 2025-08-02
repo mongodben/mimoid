@@ -1,0 +1,26 @@
+2025-08-02 19:24:36,721 - __main__ - INFO - Checking prerequisites...
+2025-08-02 19:24:36,721 - __main__ - INFO - Connecting to MongoDB...
+2025-08-02 19:24:36,724 - __main__ - INFO - Successfully connected to database: docusign
+2025-08-02 19:24:36,724 - __main__ - INFO - Creating indexes...
+2025-08-02 19:24:36,725 - __main__ - INFO - Creating indexes for collection: accounts
+2025-08-02 19:24:36,799 - __main__ - INFO - Creating indexes for collection: users
+2025-08-02 19:24:36,904 - __main__ - INFO - Creating indexes for collection: templates
+2025-08-02 19:24:36,998 - __main__ - INFO - Creating indexes for collection: documents
+2025-08-02 19:24:37,072 - __main__ - INFO - Creating indexes for collection: recipients
+2025-08-02 19:24:37,187 - __main__ - INFO - Creating indexes for collection: envelopes
+2025-08-02 19:24:37,314 - __main__ - INFO - Creating indexes for collection: audit_events
+2025-08-02 19:24:37,426 - __main__ - INFO - Creating indexes for collection: brands
+2025-08-02 19:24:37,622 - __main__ - INFO - Creating indexes for collection: folders
+2025-08-02 19:24:37,687 - __main__ - INFO - All indexes created successfully
+2025-08-02 19:24:37,687 - __main__ - INFO - Starting database seeding...
+2025-08-02 19:24:37,687 - __main__ - ERROR - Error during seeding: Can't instantiate abstract class DocuSignDatabaseSeeder with abstract methods clear_database, create_indexes, seed_all_collections, validate_seed_data
+2025-08-02 19:24:37,688 - __main__ - ERROR - Unexpected error: Can't instantiate abstract class DocuSignDatabaseSeeder with abstract methods clear_database, create_indexes, seed_all_collections, validate_seed_data
+Traceback (most recent call last):
+  File "/Users/ben.p/projects/mimoid/projects/docusign/main.py", line 327, in run
+    seed_result = self.seed_database()
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ben.p/projects/mimoid/projects/docusign/main.py", line 154, in seed_database
+    seeder = DocuSignDatabaseSeeder(self.schema)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Can't instantiate abstract class DocuSignDatabaseSeeder with abstract methods clear_database, create_indexes, seed_all_collections, validate_seed_data
+2025-08-02 19:24:37,688 - __main__ - INFO - Database connection closed

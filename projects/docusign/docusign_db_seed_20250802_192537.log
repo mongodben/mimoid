@@ -1,0 +1,14 @@
+2025-08-02 19:25:37,949 - __main__ - INFO - Checking prerequisites...
+2025-08-02 19:25:37,949 - __main__ - INFO - Connecting to MongoDB...
+2025-08-02 19:25:37,952 - __main__ - INFO - Successfully connected to database: docusign
+2025-08-02 19:25:37,952 - __main__ - WARNING - Database 'docusign' already exists
+2025-08-02 19:25:37,952 - __main__ - ERROR - Unexpected error: EOF when reading a line
+Traceback (most recent call last):
+  File "/Users/ben.p/projects/mimoid/projects/docusign/main.py", line 317, in run
+    if not self.check_prerequisites():
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ben.p/projects/mimoid/projects/docusign/main.py", line 84, in check_prerequisites
+    response = input("Do you want to drop and recreate it? (yes/no): ")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError: EOF when reading a line
+2025-08-02 19:25:37,953 - __main__ - INFO - Database connection closed

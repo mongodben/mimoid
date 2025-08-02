@@ -1,0 +1,53 @@
+2025-08-02 19:32:06,601 - __main__ - INFO - Checking prerequisites...
+2025-08-02 19:32:06,601 - __main__ - INFO - Connecting to MongoDB at mongodb+srv://synthetic-data-generator:****@synthetic-data.2gsfk6w.mongodb.net/?retryWrites=true&w=majority&appName=synthetic-data...
+2025-08-02 19:32:07,829 - __main__ - INFO - Successfully connected to database: docusign
+2025-08-02 19:32:07,871 - __main__ - INFO - Creating indexes...
+2025-08-02 19:32:07,871 - __main__ - INFO - Creating indexes for collection: accounts
+2025-08-02 19:32:08,184 - __main__ - INFO - Creating indexes for collection: users
+2025-08-02 19:32:08,504 - __main__ - INFO - Creating indexes for collection: templates
+2025-08-02 19:32:08,870 - __main__ - INFO - Creating indexes for collection: documents
+2025-08-02 19:32:09,102 - __main__ - INFO - Creating indexes for collection: recipients
+2025-08-02 19:32:09,614 - __main__ - INFO - Creating indexes for collection: envelopes
+2025-08-02 19:32:10,190 - __main__ - INFO - Creating indexes for collection: audit_events
+2025-08-02 19:32:10,665 - __main__ - INFO - Creating indexes for collection: brands
+2025-08-02 19:32:10,939 - __main__ - INFO - Creating indexes for collection: folders
+2025-08-02 19:32:11,458 - __main__ - INFO - All indexes created successfully
+2025-08-02 19:32:11,459 - __main__ - INFO - Starting database seeding...
+2025-08-02 19:32:11,564 - seed_db - INFO - Starting DocuSign database seeding...
+2025-08-02 19:32:12,604 - seed_db - INFO - Seeding 50 accounts...
+2025-08-02 19:32:13,859 - seed_db - INFO - Seeding brands...
+2025-08-02 19:32:14,439 - seed_db - INFO - Seeding users...
+2025-08-02 19:32:15,865 - seed_db - INFO - Seeding folders...
+2025-08-02 19:32:18,878 - seed_db - INFO - Seeding templates...
+2025-08-02 19:32:21,913 - seed_db - INFO - Seeding 2000 envelopes...
+2025-08-02 19:32:31,892 - seed_db - INFO - Seeded batch 0-100 (100 envelopes)
+2025-08-02 19:32:41,907 - seed_db - INFO - Seeded batch 100-200 (100 envelopes)
+2025-08-02 19:32:47,924 - seed_db - INFO - Seeded batch 200-300 (100 envelopes)
+2025-08-02 19:32:52,914 - seed_db - INFO - Seeded batch 300-400 (100 envelopes)
+2025-08-02 19:32:55,929 - seed_db - INFO - Seeded batch 400-500 (100 envelopes)
+2025-08-02 19:32:58,917 - seed_db - INFO - Seeded batch 500-600 (100 envelopes)
+2025-08-02 19:33:00,924 - seed_db - INFO - Seeded batch 600-700 (100 envelopes)
+2025-08-02 19:33:03,917 - seed_db - INFO - Seeded batch 700-800 (100 envelopes)
+2025-08-02 19:33:06,925 - seed_db - INFO - Seeded batch 800-900 (100 envelopes)
+2025-08-02 19:33:09,946 - seed_db - INFO - Seeded batch 900-1000 (100 envelopes)
+2025-08-02 19:33:12,925 - seed_db - INFO - Seeded batch 1000-1100 (100 envelopes)
+2025-08-02 19:33:15,946 - seed_db - INFO - Seeded batch 1100-1200 (100 envelopes)
+2025-08-02 19:33:18,937 - seed_db - INFO - Seeded batch 1200-1300 (100 envelopes)
+2025-08-02 19:33:21,948 - seed_db - INFO - Seeded batch 1300-1400 (100 envelopes)
+2025-08-02 19:33:24,956 - seed_db - INFO - Seeded batch 1400-1500 (100 envelopes)
+2025-08-02 19:33:26,947 - seed_db - INFO - Seeded batch 1500-1600 (100 envelopes)
+2025-08-02 19:33:28,941 - seed_db - INFO - Seeded batch 1600-1700 (100 envelopes)
+2025-08-02 19:33:30,948 - seed_db - INFO - Seeded batch 1700-1800 (100 envelopes)
+2025-08-02 19:33:32,958 - seed_db - INFO - Seeded batch 1800-1900 (100 envelopes)
+2025-08-02 19:33:34,942 - seed_db - INFO - Seeded batch 1900-2000 (100 envelopes)
+2025-08-02 19:33:34,942 - seed_db - INFO - Audit events created with envelopes
+2025-08-02 19:33:34,943 - seed_db - INFO - Updating account statistics...
+2025-08-02 19:34:55,254 - seed_db - INFO - Seeding completed: {'accounts': 50, 'users': 189, 'brands': 18, 'folders': 693, 'templates': 368, 'envelopes': 2000, 'documents': 3968, 'recipients': 3765, 'audit_events': 12762}
+2025-08-02 19:34:55,255 - __main__ - INFO - Database seeding completed successfully
+2025-08-02 19:34:55,282 - __main__ - INFO - Validating seeded data...
+2025-08-02 19:34:55,668 - __main__ - INFO - Validating relationships...
+2025-08-02 19:34:56,075 - __main__ - INFO - Checking data quality...
+2025-08-02 19:34:56,253 - __main__ - INFO - Validation completed. Found 0 issues
+2025-08-02 19:34:56,253 - __main__ - INFO - Generating summary report...
+2025-08-02 19:34:56,253 - __main__ - INFO - Total execution time: 169.65 seconds
+2025-08-02 19:34:56,292 - __main__ - INFO - Database connection closed

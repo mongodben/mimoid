@@ -23,22 +23,19 @@ Take this input file <some_input_file.md> and use the Mimoid workflow to create 
 ```
 ## Flow 
 
-The Mimoid workflow should follow this process.
+The Mimoid workflow should follow this process:
 
-Before you being create a new directory for the project within the `projects` directory of this repository. E.g. `projects/my_project/`
+1. [User] Create a new directory for the project within the `projects` directory of this repository. E.g. `projects/my_project/`
+2. [User] Include some input file/files in the project directory. E.g. `projects/my_project/input.md`
+3. [LLM] proceeds through the Mimoid workflow as follows:
+   - [LLM] Step 1: Technical Design
+   - [LLM] Step 2: Database Architecture
+   - [LLM] Step 3: Seed Database
+   - [LLM] Step 4: Run and Iterate
+   - [LLM] Step 5: Database Documentation
 
-Within the directory, create the following files:
+The LLM outputs the files to `projects/my_project/`
 
-1. Map the input to a technical design (create `tech_design.md`).
-   - More info in [steps/1_tech_design.md](./steps/1_tech_design.md)
-2. Generate the MongoDB schema and indexes (create `db_schema.py`). 
-   - More info in [steps/2_db_architecture.md](./steps/2_db_architecture.md)
-3. Generate sample data (create `seed_db.py`)
-   - More info in [steps/3_seed_db.md](./steps/3_seed_db.md)
-4. Run seed an iterate.
-   - More info in [steps/4_run_iterate.md](./steps/4_run_iterate.md)
-5. Document the database (create `README.md`)
-   - More info in [steps/5_document.md](./steps/5_document.md)
 
 In the end the directory should contain the following files:
 

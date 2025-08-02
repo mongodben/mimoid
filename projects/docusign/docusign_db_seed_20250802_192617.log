@@ -1,0 +1,47 @@
+2025-08-02 19:26:17,498 - __main__ - INFO - Checking prerequisites...
+2025-08-02 19:26:17,498 - __main__ - INFO - Connecting to MongoDB...
+2025-08-02 19:26:17,501 - __main__ - INFO - Successfully connected to database: docusign
+2025-08-02 19:26:17,501 - __main__ - WARNING - Database 'docusign' already exists
+2025-08-02 19:26:17,501 - __main__ - INFO - Dropping existing database 'docusign'...
+2025-08-02 19:26:17,505 - __main__ - INFO - Creating indexes...
+2025-08-02 19:26:17,505 - __main__ - INFO - Creating indexes for collection: accounts
+2025-08-02 19:26:17,576 - __main__ - INFO - Creating indexes for collection: users
+2025-08-02 19:26:17,651 - __main__ - INFO - Creating indexes for collection: templates
+2025-08-02 19:26:17,736 - __main__ - INFO - Creating indexes for collection: documents
+2025-08-02 19:26:17,805 - __main__ - INFO - Creating indexes for collection: recipients
+2025-08-02 19:26:17,906 - __main__ - INFO - Creating indexes for collection: envelopes
+2025-08-02 19:26:18,020 - __main__ - INFO - Creating indexes for collection: audit_events
+2025-08-02 19:26:18,124 - __main__ - INFO - Creating indexes for collection: brands
+2025-08-02 19:26:18,194 - __main__ - INFO - Creating indexes for collection: folders
+2025-08-02 19:26:18,285 - __main__ - INFO - All indexes created successfully
+2025-08-02 19:26:18,286 - __main__ - INFO - Starting database seeding...
+2025-08-02 19:26:18,350 - seed_db - INFO - Starting DocuSign database seeding...
+2025-08-02 19:26:18,353 - seed_db - INFO - Seeding 50 accounts...
+2025-08-02 19:26:18,375 - seed_db - INFO - Seeding brands...
+2025-08-02 19:26:18,380 - seed_db - INFO - Seeding users...
+2025-08-02 19:26:18,420 - seed_db - INFO - Seeding folders...
+2025-08-02 19:26:18,448 - seed_db - INFO - Seeding templates...
+2025-08-02 19:26:18,471 - seed_db - INFO - Seeding 2000 envelopes...
+2025-08-02 19:26:18,474 - __main__ - ERROR - Error during seeding: ENVELOPE_DELIVERED
+2025-08-02 19:26:18,474 - __main__ - ERROR - Unexpected error: ENVELOPE_DELIVERED
+Traceback (most recent call last):
+  File "/Users/ben.p/projects/mimoid/projects/docusign/main.py", line 323, in run
+    seed_result = self.seed_database()
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ben.p/projects/mimoid/projects/docusign/main.py", line 151, in seed_database
+    result = seeder.seed_all()
+             ^^^^^^^^^^^^^^^^^
+  File "/Users/ben.p/projects/mimoid/projects/docusign/seed_db.py", line 150, in seed_all
+    self._seed_envelopes(total_envelopes=2000)
+  File "/Users/ben.p/projects/mimoid/projects/docusign/seed_db.py", line 736, in _seed_envelopes
+    envelope_data = self._create_envelope(account, sender)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ben.p/projects/mimoid/projects/docusign/seed_db.py", line 854, in _create_envelope
+    self._update_envelope_dates(envelope, events)
+  File "/Users/ben.p/projects/mimoid/projects/docusign/seed_db.py", line 1168, in _update_envelope_dates
+    elif event.event_type == EventType.ENVELOPE_DELIVERED:
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ben.p/.local/share/uv/python/cpython-3.11.13-macos-aarch64-none/lib/python3.11/enum.py", line 786, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: ENVELOPE_DELIVERED
+2025-08-02 19:26:18,476 - __main__ - INFO - Database connection closed

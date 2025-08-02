@@ -17,6 +17,13 @@ import sys
 from datetime import datetime
 from typing import Dict, Any
 import traceback
+from pathlib import Path
+
+# Load environment variables from .env file
+env_path = Path(__file__).parent.parent.parent / '.env'
+if env_path.exists():
+    from dotenv import load_dotenv
+    load_dotenv(env_path)
 
 # Add the mimoid package to Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
@@ -61,7 +68,7 @@ def validate_environment():
 
     # Check required environment variables
     optional_vars = {
-        "MONGODB_URI": os.getenv("MONGODB_URI", "mongodb://localhost:27017"),
+        "MONGODB_URI": os.getenv("MONGODB_URI"),
         "DATABASE_NAME": os.getenv("DATABASE_NAME", database_schema.database_name),
         "BRAZILIAN_MODE": os.getenv("BRAZILIAN_MODE", "true"),
         "DEBUG": os.getenv("DEBUG", "false"),
@@ -69,13 +76,14 @@ def validate_environment():
 
     print("  🌍 Environment variables:")
     for var, value in optional_vars.items():
-        masked_value = (
-            value
-            if "URI" not in var
-            else value.split("@")[-1]
-            if "@" in value
-            else value
-        )
+        if value is None:
+            masked_value = "None"
+        elif "URI" not in var:
+            masked_value = value
+        elif "@" in value:
+            masked_value = value.split("@")[-1]
+        else:
+            masked_value = value
         print(f"    {var}: {masked_value}")
 
     return True
@@ -212,9 +220,9 @@ def print_usage_examples():
     print("=" * 50)
 
     print("\n🔌 MongoDB Connection:")
-    print(f"  mongo {seeder.get_connection_string()}/{database_schema.database_name}")
+    print(f"  mongo {seeder.get_masked_connection_string()}/{database_schema.database_name}")
     print("  # Or with MongoDB Compass:")
-    print(f"  {seeder.get_connection_string()}")
+    print(f"  {seeder.get_masked_connection_string()}")
 
     print("\n🇧🇷 Sample Brazilian EdTech Queries:")
 

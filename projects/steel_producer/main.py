@@ -13,6 +13,13 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 import traceback
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(__file__), '../../.env'))
+except ImportError:
+    print("💡 Install python-dotenv to automatically load .env file: pip install python-dotenv")
+
 try:
     from pymongo import MongoClient
     from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError

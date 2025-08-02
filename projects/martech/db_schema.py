@@ -270,9 +270,9 @@ class CustomerCollectionSchema(BaseCollectionSchema):
         IndexDefinition(
             name="name_text_search",
             keys={
-                "first_name": IndexDirection.TEXT,
-                "last_name": IndexDirection.TEXT,
-                "company": IndexDirection.TEXT,
+                "first_name": "text",
+                "last_name": "text",
+                "company": "text",
             },
         ),
         IndexDefinition(
