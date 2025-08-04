@@ -13,24 +13,26 @@ Mimoid is a MongoDB database generation tool that uses agentic LLM workflows to 
 - **seeder_base.py**: Abstract `DatabaseSeeder` class that all concrete seeders must implement
 - **__init__.py**: Exposes all base types for use in generated projects
 
-### Workflow Structure (`steps/` directory)
-The system follows a 5-step workflow documented in individual markdown files:
+### Workflow Structure (1 agent per step)
+The system follows a 6-step workflow documented in individual markdown files:
 1. **Technical Design**: Analyze input and create workload tables and relationship maps
    - Map the input to a technical design (create `tech_design.md`).
-   - More info in [steps/1_tech_design.md](./steps/1_tech_design.md)
+   - Use the `tech-design-generator` agent
 2. **Database Architecture**: Generate Pydantic models and MongoDB schema definitions  
    - Generate the MongoDB schema and indexes (create `db_schema.py`). 
-   - More info in [steps/2_db_architecture.md](./steps/2_db_architecture.md)
+   - Use the `db-architecture-generator` agent
 3. **Seed Database**: Create realistic sample data with proper referential integrity
    - Generate sample data (create `seed_db.py`)
-   - More info in [steps/3_seed_db.md](./steps/3_seed_db.md)
+   - Use the `seed-db-generator` agent
 4. **Run and Iterate**: Execute seeding with validation and error handling
+   - Use the `run-iterate-agent` agent
    - Run seed an iterate.
-   - More info in [steps/4_run_iterate.md](./steps/4_run_iterate.md)
 5. **Document Database**: Generate comprehensive documentation and usage examples
-The Mimoid workflow should follow this process.
    - Document the database (create `README.md`)
-   - More info in [steps/5_document.md](./steps/5_document.md)
+   - Use the `database-documenter` agent
+6. **API Server Generation**: Generate FastAPI server with OpenAPI specification
+   - Generate REST API server (create `server.py`, `openapi.yml`, `test_api.py`)
+   - Use the `api-server-generator` agent
 
 Before you being create a new directory for the project within the `projects` directory of this repository. E.g. `projects/my_project/`
 
@@ -52,7 +54,10 @@ projects/my_project/
 ├── db_schema.py
 ├── seed_db.py
 ├── main.py
-└── README.md
+├── README.md
+├── server.py
+├── openapi.yml
+└── test_api.py
 ```
 
 
@@ -102,12 +107,18 @@ uv run python main.py
 ### Creating New Database Projects
 1. **Input Preparation**: Place business description, use case, or existing schema info in a markdown file
 2. **Project Directory**: Create `projects/new_project_name/` directory
-3. **Follow 5-Step Process**: Implement each step following the detailed instructions in `steps/` directory
-4. **Import Requirements**: All generated schema files must import from mimoid package:
+3. **Follow 6-Step Process**: Implement each step following the detailed instructions for each agent in the `.claude/agents` directory
+4. **Import Requirements**: All generated files must import from mimoid package:
    ```python
+   # For schema files (db_schema.py)
    from mimoid import (
        BaseMongoDbSchema, BaseCollectionSchema, BaseMongoDbDocumentSchema,
        IndexDefinition, IndexDirection, PyObjectId, DatabaseSeeder
+   )
+   
+   # For API generation (server.py)
+   from mimoid import (
+       ApiGenerator, OpenApiGenerator, ApiValidator
    )
    ```
 
@@ -128,12 +139,7 @@ uv run python main.py
 ## Environment Configuration
 
 ### Required Variables
-- `MONGODB_URI`: MongoDB connection string (defaults to `mongodb://localhost:27017`)
-
-### Optional Variables  
-- `OPENAI_API_KEY`: For AI-generated content in seeders (only if using OpenAI features)
-- `OPENAI_ENDPOINT`: Custom OpenAI-compatible endpoint
-- `OPENAI_MODEL`: Specific model to use
+- `MONGODB_URI`: MongoDB connection string
 
 ## Key Implementation Notes
 

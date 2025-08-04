@@ -10,9 +10,11 @@ Example inputs could include:
 
 ## Run Mimoid
 
-There's not a single way to run it because it's basically just a prompt workflow with some shared Python utilities in the `mimoid` package. 
+The Mimoid workflow 
 
-I've been using Claude Code to run it, but other agentic code editor tools like OpenAI Codex, Windsurf, or GitHub CoPilot may work as well.
+Mimoid is a prompt workflow with some shared Python utilities in the `mimoid` package. It is optimized to be run with Claude Code. There are a series of Claude Code agents with custom system prompts to run the Mimoid workflow.
+
+Other agentic code editor tools like OpenAI Codex, Windsurf, or GitHub CoPilot may work as well.
 
 I give Claude Code a prompt like the following:
 
@@ -34,6 +36,8 @@ The Mimoid workflow should follow this process:
    - [LLM] Step 4: Run and Iterate
    - [LLM] Step 5: Database Documentation
 
+Detailed information on each of these steps can be found in the [.claude/agents](.claude/agents) directory. There is a separate agent for each step.
+
 The LLM outputs the files to `projects/my_project/`
 
 
@@ -49,7 +53,7 @@ projects/my_project/
 └── README.md
 ```
 
-More information on each step can be found in the [`steps`](steps) directory.
+More information on each step can be found in the [`.claude/agents`](.claude/agents) directory.
 
 ## Development
 
@@ -91,15 +95,3 @@ MONGODB_URI="mongodb://custom:27017" uv run python main.py
 cd projects/digital_bank
 uv run python main.py
 ```
-
-## Future Work
-
-- [ ] Support Atlas features, like Search/Vector Search.
-  - This can probably be accomplished with a bit of prompt engineering in the `steps`.
-- [ ] Proactively support using LLM to generate bits of the synthetic data.
-  - This will require some better prompting and maybe creating some Python utilities in `mimoid`. 
-  - This'd be useful for generating richer data for things like reviews, comments, etc.
-- [ ] Additional reference documentation for MongoDB database design.
-  - Add some optional reference documentation that the model can refer to when architecting the DB. Refer to relevant bits of the reference documentation in the `steps` prompt files. 
-- [ ] Evaluation of generated results for each step.
-  - I have no idea how to evaluate this beast. \*waves hands\* LLM-as-a-judge...
